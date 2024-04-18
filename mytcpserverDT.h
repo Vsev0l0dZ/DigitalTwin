@@ -11,7 +11,7 @@ class MyTcpServerDT : public QObject
 {
     Q_OBJECT
 public:
-    explicit MyTcpServerDT(QObject *parent = 0, int port=6000);
+    explicit MyTcpServerDT(QObject *parent = 0, int port = 6000);
 
     ~MyTcpServerDT();
 

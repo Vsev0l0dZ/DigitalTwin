@@ -84,19 +84,33 @@ public slots:
 
 private:
     // БИНС
-    float pitch = 120;// угол дифферента глайдера -180 +180
-    float rollGlider = 0;// угол крена глайдера -180 +180
+    float pitch = 120;// дифферент глайдера -180 +180
+    const float minPitch = -180;
+    const float maxPitch = 180;
+
+    float rollGlider = 0;// крен глайдера -180 +180
+    const float minRollGlider = -180;
+    const float maxRollGlider = 180;
+
     float yaw = 0;// курс 0 .. 360
+    const float minYaw = 0;
+    const float maxYaw = 360;
+
     float depth = 0;//
     float depthSpeed = 0.3;// скорость погружения м/с
     float timerDelta = 200.0;// время перерасчета/обновления таймера, мс; 1000 мс - it is in realTime
+    const uint16_t oneSecondInMs = 1000;
 
     const float p1 = 2.954e-9;
     const float p3 = -5.734e-5;
     const float p5 = -0.1718;
 
     double lat = std::nan("1");//
+    const double minLat = -90;
+    const double maxLat = 90;
     double lon = std::nan("1");//
+    const double minLon = -180;
+    const double maxLon = 180;
 
 //    float alt = 0;// высота над уровнем моря
     uint8_t hdop = 50;// ошибка gps, if 50 - it is ~ in size of football field
@@ -105,14 +119,23 @@ private:
     uint8_t currentMIP = 50;// 0 (заполнен) .. 100 (воздух)
     uint8_t newMIP = 50;// 0 (заполнен) .. 100 (воздух)
     const uint8_t averageMIP = 50;// 0 (заполнен) .. 100 (воздух)
+    const uint8_t fullOfWaterMIP = 0;
+    const uint8_t airOnlyMIP = 100;
 
     int8_t currentMID = 0;// -100// в корму +100// в нос
     int8_t newMID = 0;// -100 +100
+    const int8_t maxToBowMID = -100;
+    const int8_t maxToSternMID = 100;
 
     int8_t rollMotor = 0;// крен -90 +90
+    const int8_t maxRollMotorLeft = -90;
+    const int8_t maxRollMotorRight = 90;
 
     int8_t currentRudder = 0;// руль -15 +15
     int8_t newRudder = 0;// руль -15 +15
+    const int8_t minRudder = -15;
+    const int8_t maxRudder = 15;
+
 
     const uint8_t speedMIP = 3;// скорость изменения МИПа
 

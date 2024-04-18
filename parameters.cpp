@@ -9,7 +9,7 @@ Parameters::Parameters()
 
 float Parameters::getPitch() const
 {
-    if(pitch >= -180 && pitch <= 180){
+    if(pitch >= minPitch && pitch <= maxPitch){
         return pitch;
     }
     else {
@@ -20,7 +20,7 @@ float Parameters::getPitch() const
 
 void Parameters::setPitch(float nextPitch)
 {
-    if(nextPitch >= -180 && nextPitch <= 180){
+    if(nextPitch >= minPitch && nextPitch <= maxPitch){
         pitch = nextPitch;
     }
     else{
@@ -30,7 +30,7 @@ void Parameters::setPitch(float nextPitch)
 
 float Parameters::getRollGlider() const
 {
-    if(rollGlider >= -180 && rollGlider <= 180){
+    if(rollGlider >= minRollGlider && rollGlider <= maxRollGlider){
         return rollGlider;
     }
     else{
@@ -41,7 +41,7 @@ float Parameters::getRollGlider() const
 
 void Parameters::setRollGlider(float nextRollGlider)
 {
-    if(nextRollGlider >= -180 && nextRollGlider <= 180){
+    if(nextRollGlider >= minRollGlider && nextRollGlider <= maxRollGlider){
         rollGlider = nextRollGlider;
     }
     else
@@ -50,7 +50,7 @@ void Parameters::setRollGlider(float nextRollGlider)
 
 float Parameters::getYaw() const
 {
-    if(yaw >= 0 && yaw <= 360){
+    if(yaw >= minYaw && yaw <= maxYaw){
         return yaw;
     }
     else{
@@ -107,7 +107,7 @@ void Parameters::setHdop(float nextHdop)
 
 uint8_t Parameters::getCurrentMIP() const
 {
-    if( currentMIP <=100 /*&& currentMIP >= 0*/){
+    if( currentMIP <= airOnlyMIP){
         return currentMIP;
     }
     else{
@@ -119,7 +119,7 @@ uint8_t Parameters::getCurrentMIP() const
 void Parameters::setCurrentMIP(uint8_t newCurrentMIP)
 {
 
-    if( newCurrentMIP <=100 /*&& newCurrentMIP >= 0*/){
+    if( newCurrentMIP <= airOnlyMIP){
         currentMIP = newCurrentMIP;
     }
     else
@@ -128,7 +128,7 @@ void Parameters::setCurrentMIP(uint8_t newCurrentMIP)
 
 int8_t Parameters::getCurrentMID() const
 {
-    if(currentMID >= -100 && currentMID <= 100){
+    if(currentMID >= maxToBowMID && currentMID <= maxToSternMID){
         return currentMID;
     }
     else{
@@ -139,7 +139,7 @@ int8_t Parameters::getCurrentMID() const
 
 void Parameters::setCurrentMID(int8_t newCurrentMID)
 {
-    if(newCurrentMID >= -100 && newCurrentMID <= 100){
+    if(newCurrentMID >= maxToBowMID && newCurrentMID <= maxToSternMID){
         currentMID = newCurrentMID;
     }
     else
@@ -149,7 +149,7 @@ void Parameters::setCurrentMID(int8_t newCurrentMID)
 
 int8_t Parameters::getNewMID() const
 {
-    if(newMID >= -100 && newMID <=100){
+    if(newMID >= maxToBowMID && newMID <= maxToSternMID){
         return newMID;
     }
     else{
@@ -160,7 +160,7 @@ int8_t Parameters::getNewMID() const
 
 void Parameters::setNewMID(int8_t nextNewMID)
 {
-    if(nextNewMID >= -100 && nextNewMID <=100){
+    if(nextNewMID >= maxToBowMID && nextNewMID <= maxToSternMID){
         newMID = nextNewMID;
     }
     else
@@ -170,7 +170,7 @@ void Parameters::setNewMID(int8_t nextNewMID)
 
 uint8_t Parameters::getNewMIP() const
 {
-    if( newMIP <=100/* && newMIP >= 0*/){
+    if( newMIP <= airOnlyMIP){
         return newMIP;
     }
     else{
@@ -181,7 +181,7 @@ uint8_t Parameters::getNewMIP() const
 
 void Parameters::setNewMIP(uint8_t nextNewMIP)
 {
-    if( nextNewMIP <=100 /*&& nextNewMIP >= 0*/){
+    if( nextNewMIP <= airOnlyMIP){
         newMIP = nextNewMIP;
     }
     else
@@ -191,7 +191,7 @@ void Parameters::setNewMIP(uint8_t nextNewMIP)
 
 int8_t Parameters::getRollMotor() const
 {
-    if(rollMotor >= -90 && rollMotor <= 90){
+    if(rollMotor >= maxRollMotorLeft && rollMotor <= maxRollMotorRight){
         return rollMotor;
     }
     else{
@@ -202,7 +202,7 @@ int8_t Parameters::getRollMotor() const
 
 void Parameters::setRollMotor(int8_t nextRollMotor)
 {
-    if(rollMotor >= -90 && rollMotor <= 90){
+    if(rollMotor >= maxRollMotorLeft && rollMotor <= maxRollMotorRight){
         rollMotor = nextRollMotor;
     }
     else
@@ -211,7 +211,7 @@ void Parameters::setRollMotor(int8_t nextRollMotor)
 
 int8_t Parameters::getCurrentRudder() const
 {
-    if(currentRudder >= -15 && currentRudder <= 15){
+    if(currentRudder >= minRudder && currentRudder <= maxRudder){
         return currentRudder;
     }
     else{
@@ -222,7 +222,7 @@ int8_t Parameters::getCurrentRudder() const
 
 void Parameters::setCurrentRudder(int8_t newCurrentRudder)
 {
-    if(newCurrentRudder >= -15 && newCurrentRudder <= 15){
+    if(newCurrentRudder >= minRudder && newCurrentRudder <= maxRudder){
         currentRudder = newCurrentRudder;
     }
     else
@@ -231,7 +231,7 @@ void Parameters::setCurrentRudder(int8_t newCurrentRudder)
 
 int8_t Parameters::getNewRudder() const
 {
-    if(newRudder >= -15 && newRudder <= 15){
+    if(newRudder >= minRudder && newRudder <= maxRudder){
         return newRudder;
     }
     else{
@@ -242,7 +242,7 @@ int8_t Parameters::getNewRudder() const
 
 void Parameters::setNewRudder(int8_t nextNewRudder)
 {
-    if(nextNewRudder >= -15 && nextNewRudder <= 15){
+    if(nextNewRudder >= minRudder && nextNewRudder <= maxRudder){
         newRudder = nextNewRudder;
     }
     else
@@ -279,7 +279,7 @@ void Parameters::setBottom(float newBottom)
 
 void Parameters::setYaw(float newYaw)
 {
-    if(newYaw >= 0 && newYaw <= 360){
+    if(newYaw >= minYaw && newYaw <= maxYaw){
         yaw = newYaw;
     }
     else
@@ -322,7 +322,7 @@ void Parameters::parserInbox(QByteArray data)
 {
 //    QString commandLine =  QString(data);
 //    qDebug() << "commandLine = " << commandLine;
-//    commandLine.remove("\r\n");// на случай, если "\r\n" будут портить строку
+//    commandLine.remove("\r\n");// if "\r\n" будут портить строку
 
     QStringList fullList = QString(data).split('\n');// split, если несколько строк
 //    qDebug() << "fullList=" <<  fullList;
@@ -334,7 +334,7 @@ void Parameters::parserInbox(QByteArray data)
         if(!commandList.isEmpty() && commandList.size() == 3){
             if(commandList.at(0).toLower() == "set"){
                 if(commandList.at(1).toLower() == "mip"){
-                    if(commandList.at(2).toInt() >= 0 && commandList.at(2).toInt() <= 100){
+                    if(commandList.at(2).toInt() >= fullOfWaterMIP && commandList.at(2).toInt() <= airOnlyMIP){
                         qDebug() << "newMIP befor convertation" << commandList.at(2);
                         newMIP = commandList.at(2).toInt();
                         this->setNewMIP(newMIP);
@@ -344,7 +344,7 @@ void Parameters::parserInbox(QByteArray data)
                         qDebug() << "The entered MIP value is out of range!\n";
                 }
                 else if(commandList.at(1).toLower() == "mid"){
-                    if(commandList.at(1).toInt() >= -100 && commandList.at(1).toInt() <= 100){
+                    if(commandList.at(1).toInt() >= maxToBowMID && commandList.at(1).toInt() <= maxToSternMID){
                         newMID = commandList.at(2).toInt();
                         //                    qDebug() << "got newMID = " << newMID;
                         this->setNewMID(newMID);
@@ -354,7 +354,7 @@ void Parameters::parserInbox(QByteArray data)
                         qDebug() << "The entered MID value is out of range!\n";
                 }
                 else if(commandList.at(1).toLower() == "rudder"){
-                    if(commandList.at(1).toInt() >= -15 && commandList.at(1).toInt() <= 15){
+                    if(commandList.at(1).toInt() >= minRudder && commandList.at(1).toInt() <= maxRudder){
                         newRudder = commandList.at(2).toInt();
                         this->setNewRudder(newRudder);
                         qDebug() << "rudder is set to " << newRudder;
@@ -363,7 +363,7 @@ void Parameters::parserInbox(QByteArray data)
                         qDebug() << "The entered Rudder value is out of range!\n";
                 }
                 else if(commandList.at(1).toLower() == "lat"){
-                    if(commandList.at(1).toDouble() >= -90 && commandList.at(1).toDouble() <= 90){// есть ли минус?
+                    if(commandList.at(1).toDouble() >= minLat && commandList.at(1).toDouble() <= maxLat){
                         lat = commandList.at(2).toDouble();
                         this->setLat(lat);
                         qDebug() << "lat is set to " << lat;
@@ -372,7 +372,7 @@ void Parameters::parserInbox(QByteArray data)
                         qDebug() << "The entered Latitude value is out of range!\n";
                 }
                 else if(commandList.at(1).toLower() == "lon"){
-                    if(commandList.at(1).toDouble() >= -180 && commandList.at(1).toDouble() <= 180){
+                    if(commandList.at(1).toDouble() >= minLon && commandList.at(1).toDouble() <= maxLon){
                         lon = commandList.at(2).toDouble();
                         this->setLon(lon);
                         qDebug() << "lon is set to " << lon;
@@ -392,7 +392,7 @@ void Parameters::recalculateMotors()
 {
     qint8 tmpMIP = -1;
     if(newMIP < currentMIP){
-        tmpMIP = static_cast<int>(round(currentMIP - speedMIP * timerDelta / 1000));
+        tmpMIP = static_cast<int>(round(currentMIP - speedMIP * timerDelta / oneSecondInMs));
 
         if(tmpMIP <= newMIP){// чтобы в процессе не перескочил в else if
             tmpMIP = newMIP;
@@ -403,7 +403,7 @@ void Parameters::recalculateMotors()
         qInfo() << "currentMIP =" << currentMIP;
     }
     else if(newMIP > currentMIP){
-        tmpMIP = static_cast<int>(round(currentMIP + speedMIP * timerDelta / 1000));
+        tmpMIP = static_cast<int>(round(currentMIP + speedMIP * timerDelta / oneSecondInMs));
         if(tmpMIP >= newMIP){
             tmpMIP = newMIP;
         }
@@ -413,14 +413,14 @@ void Parameters::recalculateMotors()
 
     qint8 tmpMID = -101;
     if(newMID < currentMID){
-        tmpMID = static_cast<int>(round(currentMID - speedMID * timerDelta / 1000));
+        tmpMID = static_cast<int>(round(currentMID - speedMID * timerDelta / oneSecondInMs));
         if(tmpMID <= newMID){// чтобы в процессе не перескочил в else if
             tmpMID = newMID;
         }
         setCurrentMID(tmpMID);
     }
     else if(newMID > currentMID){
-        tmpMID = static_cast<int>(round(currentMID + speedMID * timerDelta / 1000));
+        tmpMID = static_cast<int>(round(currentMID + speedMID * timerDelta / oneSecondInMs));
         if(tmpMID >= newMID){
             tmpMID = newMID;
         }
@@ -436,19 +436,19 @@ void Parameters::recalculateMotors()
 void Parameters::recalculatePosition()
 {
     // упрощенные формулы построены эмпирическим путем, на основании реальных испытаний
-    float tmpDepth = depth + (1 - static_cast<float>(currentMIP)/averageMIP) * depthSpeed * timerDelta/ 1000;
+    float tmpDepth = depth + (1 - static_cast<float>(currentMIP)/averageMIP) * depthSpeed * timerDelta/ oneSecondInMs;
     setDepth(tmpDepth);
 
     float tmpPitch = p1 * pow(currentMID, 5.) + p3 * pow(currentMID, 3.) + p5 * currentMID;
     setPitch(tmpPitch);
 
-    if(depth != 0 && currentMIP != 50){
-        float tmpYaw = yaw + yawCoefficient * currentRudder * timerDelta / 1000;
+    if(depth != 0 && currentMIP != averageMIP){
+        float tmpYaw = yaw + yawCoefficient * currentRudder * timerDelta / oneSecondInMs;
         if(tmpYaw < 0){
-            tmpYaw = 360 - abs(tmpYaw);
+            tmpYaw = maxYaw - abs(tmpYaw);
         }
-        else if (tmpYaw >= 360){
-            tmpYaw -= 360;
+        else if (tmpYaw >= maxYaw){
+            tmpYaw -= maxYaw;
         }
         setYaw(tmpYaw);
     }
