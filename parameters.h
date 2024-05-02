@@ -82,21 +82,27 @@ public slots:
 
     const QString &getNmeaString() const;
 
+    void resetParameters();
+
 private:
     // БИНС
     float pitch = 120;// дифферент глайдера -180 +180
+    const float defaultPitch = 120;
     const float minPitch = -180;
     const float maxPitch = 180;
 
     float rollGlider = 0;// крен глайдера -180 +180
+    const float defaultRollGlider = 0;
     const float minRollGlider = -180;
     const float maxRollGlider = 180;
 
     float yaw = 0;// курс 0 .. 360
+    const float defaultYaw = 0;
     const float minYaw = 0;
     const float maxYaw = 360;
 
     float depth = 0;//
+    const float defaultDepth = 0;
     float depthSpeed = 0.3;// скорость погружения м/с
     float timerDelta = 200.0;// время перерасчета/обновления таймера, мс; 1000 мс - it is in realTime
     const uint16_t oneSecondInMs = 1000;
@@ -118,20 +124,23 @@ private:
     // моторы
     uint8_t currentMIP = 50;// 0 (заполнен) .. 100 (воздух)
     uint8_t newMIP = 50;// 0 (заполнен) .. 100 (воздух)
-    const uint8_t averageMIP = 50;// 0 (заполнен) .. 100 (воздух)
+    const uint8_t defaultMIP = 50;// 0 (заполнен) .. 100 (воздух)
     const uint8_t fullOfWaterMIP = 0;
     const uint8_t airOnlyMIP = 100;
 
     int8_t currentMID = 0;// -100// в корму +100// в нос
     int8_t newMID = 0;// -100 +100
+    const int8_t defaultMID = 0;
     const int8_t maxToBowMID = -100;
     const int8_t maxToSternMID = 100;
 
     int8_t rollMotor = 0;// крен -90 +90
+    const int8_t defaultRollMotor = 0;
     const int8_t maxRollMotorLeft = -90;
     const int8_t maxRollMotorRight = 90;
 
     int8_t currentRudder = 0;// руль -15 +15
+    const int8_t defaultRudder = 0;
     int8_t newRudder = 0;// руль -15 +15
     const int8_t minRudder = -15;
     const int8_t maxRudder = 15;
@@ -141,7 +150,7 @@ private:
 
     const uint8_t speedMID = 30;// скорость изменения МИДа
 
-    float bottom = 30;
+    float bottom = 11022;
 
     float yawCoefficient = 0.2;// руль = 15 град., изм. курса = 3 град./с; линейная зависимость y = kx
 

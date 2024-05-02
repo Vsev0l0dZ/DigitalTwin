@@ -128,7 +128,10 @@ void MainWindowDT::on_pushButtonSendCommand_clicked()
 {
     QString command;
     command = ui->lineEditCommand->text();
-    nextMove->parserInbox(QByteArray(command.toUtf8()));
+    nextMove->parserInbox(QByteArray(command.toUtf8()));// v.2
+
+//    myServer->socketList.last()->write(QByteArray(command.toUtf8()));
+//    myServer->write(QByteArray(command.toUtf8()));// нужна ли эта строка?
 }
 
 
@@ -209,6 +212,7 @@ void MainWindowDT::on_rollMotorValueChanged(int8_t rollMotor)
 }
 
 
+
 void MainWindowDT::on_pushButtonMissionMode_clicked()
 {
     QString command = "set mode mission\n";
@@ -226,3 +230,31 @@ void MainWindowDT::on_pushButtonRunMission_clicked()
     QString command = "set mission run\n";
     myServer->socketList.last()->write(QByteArray(command.toUtf8()));
 }
+
+
+void MainWindowDT::on_bottomButton_clicked()
+{
+    nextMove->setBottom(nextMove->getDepth());
+}
+
+
+void MainWindowDT::on_resetButton_clicked()
+{
+    timerUpdate->stop();
+
+    nextMove->resetParameters();
+
+    if(!timerUpdate->isActive())
+    {
+        timerUpdate->start((int)nextMove->getTimerDelta());
+    }
+}
+
+
+void MainWindowDT::on_stopButton_clicked()
+{
+    timerUpdate->stop();
+
+    nextMove->resetParameters();
+}
+

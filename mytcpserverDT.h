@@ -11,13 +11,13 @@ class MyTcpServerDT : public QObject
 {
     Q_OBJECT
 public:
-    explicit MyTcpServerDT(QObject *parent = 0, int port = 6000);
+    explicit MyTcpServerDT(QObject *parent = 0, int port=6000);
 
-    ~MyTcpServerDT();
+    ~MyTcpServerDT();// for multiple connections
 
     QTcpSocket * mSocket;
 
-    QList<QTcpSocket*> socketList;
+    QList<QTcpSocket*> socketList;// for multiple connections
     int portNumber;
     QByteArray array;
 
@@ -28,15 +28,16 @@ public:
 
     void displayMessage(const QString& str);
 
-    const QList<QTcpSocket *> &getSocketList() const;
+    const QList<QTcpSocket *> &getSocketList() const;// for multiple connections
 
 public slots:
     void slotNewConnection();
     void slotServerRead();
 
     void onSocketStateChanged(QAbstractSocket::SocketState socketState);
+    //    void clientDisconnected();
 
-    void appendToSocketList(QTcpSocket* socket);
+    void appendToSocketList(QTcpSocket* socket);// for multiple connections
 
 
 signals:
@@ -47,6 +48,9 @@ signals:
 
 private:
     QTcpServer * mServer;
+
+
+
 };
 
 #endif // MYTCPSERVERDT_H

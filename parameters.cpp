@@ -436,13 +436,13 @@ void Parameters::recalculateMotors()
 void Parameters::recalculatePosition()
 {
     // упрощенные формулы построены эмпирическим путем, на основании реальных испытаний
-    float tmpDepth = depth + (1 - static_cast<float>(currentMIP)/averageMIP) * depthSpeed * timerDelta/ oneSecondInMs;
+    float tmpDepth = depth + (1 - static_cast<float>(currentMIP)/defaultMIP) * depthSpeed * timerDelta/ oneSecondInMs;
     setDepth(tmpDepth);
 
     float tmpPitch = p1 * pow(currentMID, 5.) + p3 * pow(currentMID, 3.) + p5 * currentMID;
     setPitch(tmpPitch);
 
-    if(depth != 0 && currentMIP != averageMIP){
+    if(depth != 0 && currentMIP != defaultMIP){
         float tmpYaw = yaw + yawCoefficient * currentRudder * timerDelta / oneSecondInMs;
         if(tmpYaw < 0){
             tmpYaw = maxYaw - abs(tmpYaw);
@@ -457,6 +457,22 @@ void Parameters::recalculatePosition()
 const QString &Parameters::getNmeaString() const
 {
     return nmeaString;
+}
+
+void Parameters::resetParameters()
+{
+    pitch = defaultPitch;
+    rollGlider = defaultRollGlider;
+    yaw = defaultYaw;
+    depth = defaultDepth;
+    currentMIP = defaultMIP;
+    currentMID = defaultMID;
+    rollMotor = defaultRollMotor;
+    currentRudder = defaultRudder;
+
+    newMIP = defaultMIP;
+    newMID = defaultMID;
+    newRudder = defaultRudder;
 }
 
 

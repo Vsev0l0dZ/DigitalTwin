@@ -62,6 +62,12 @@ private slots:
 
     void on_pushButtonRunMission_clicked();
 
+    void on_bottomButton_clicked();
+
+    void on_resetButton_clicked();
+
+    void on_stopButton_clicked();
+
 public slots:
     void getConnectState(int port, QHostAddress addr);
     void getDataFromServer(QByteArray data);
@@ -71,5 +77,8 @@ public slots:
 
 private:
     Ui::MainWindowDT *ui;
+
+
+
 };
 #endif // MAINWINDOWDT_H
