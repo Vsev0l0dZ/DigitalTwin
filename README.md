@@ -4,4 +4,5 @@
 
   получение и использование данных в процессе имитации погружения/всплытия/выхода в режимы связи;
 
-  ![screenshot](https://github.com/Vsev0l0dZ/DigitalTwin/assets/98832327/7e589045-0e22-4af0-a91c-c125ae13eebb)
+  ![screenshot](https://github.com/Vsev0l0dZ/DigitalTwin/assets/98832327/53d0cc37-3f19-4ed9-a6fa-d653e1704d05)
+
